@@ -1,13 +1,5 @@
 import requests, getpass, json
 
-import requests.packages.urllib3
-requests.packages.urllib3.disable_warnings()
-
-Proxies = {
-    "http": "http://127.0.0.1:8080",
-    "https": "https://127.0.0.1:8080"
-}
-
 session = requests.session()
 
 def parse_header(src):
@@ -41,18 +33,15 @@ def generate_stream_post_data(stream_name):
         "forOverview": "false"
     }
 
-session.get("https://elearning.ntust.edu.tw",
-            proxies = Proxies, verify = False)
+session.get("https://elearning.ntust.edu.tw")
 
 session.post("https://elearning.ntust.edu.tw/webapps/login/",
-             headers = headers_get, data = login_data,
-             proxies = Proxies, verify = False)
+             headers = headers_get, data = login_data)
 
 response = session.post(("https://elearning.ntust.edu.tw/webapps/streamViewer/"
                          "streamViewer"),
                         headers = headers_get,
-                        data = generate_stream_post_data("mygrades"),
-                        proxies = Proxies, verify = False)
+                        data = generate_stream_post_data("mygrades"))
 
 data = response.json()["sv_extras"]["sx_filters"]
 data = [ obj for obj in data if obj["attribute"] == "se_courseId" ]
@@ -74,14 +63,12 @@ data = {
 
 session.get(("https://elearning.ntust.edu.tw/webapps/streamViewer/streamViewer"
              "?cmd=view&streamName=alerts&globalNavigation=false"),
-            headers = headers_get,
-            proxies = Proxies, verify = False)
+            headers = headers_get)
 
 response = session.post(("https://elearning.ntust.edu.tw/webapps/streamViewer/"
                          "streamViewer"),
                         headers = headers_get,
-                        data = data,
-                        proxies = Proxies, verify = False)
+                        data = data)
 
 data = response.json()["sv_streamEntries"]
 data = [{"context": obj["se_context"],
