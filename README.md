@@ -9,6 +9,7 @@ so I made this program to avoid to use BlackBoard.
 
 - [Python 3](https://www.python.org)
 - [requests](http://python-requests.org)
+- [BeautifulSoup4](http://www.crummy.com/software/BeautifulSoup)
 
 ## License
 
