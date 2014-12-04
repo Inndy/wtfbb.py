@@ -1,7 +1,10 @@
 import requests, getpass, json
 
-import requests.packages.urllib3
-requests.packages.urllib3.disable_warnings()
+try:
+    import requests.packages.urllib3 as urllib3
+except ImportError:
+    import urllib3
+urllib3.disable_warnings()
 
 Proxies = {
     "http": "http://127.0.0.1:8080",
