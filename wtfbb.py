@@ -91,8 +91,11 @@ response = session.post(("https://elearning.ntust.edu.tw/webapps/streamViewer/"
                         proxies = Proxies, verify = False)
 
 data = response.json()["sv_streamEntries"]
+data = [{"context": obj["se_context"],
+         "course_id": obj["se_courseId"] if obj["se_filterName"] else "general",
+         "event_type": obj["event_type"],
+         "ann_type": obj["ann_type"]
+        } for obj in data ]
 for obj in data:
-    obj["context"] = obj["se_context"]
-    obj["course_id"] = obj["se_courseId"] if obj["se_filterName"] else "general"
     obj["course_name"] = get_course_name(obj["course_id"])
 open("output.json", "w").write(json.dumps(data, indent = 2))
