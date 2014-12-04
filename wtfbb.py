@@ -28,7 +28,7 @@ Cache-Control: no-cache""")
 login_data = {
     "user_id": "b10315005",
     "password": getpass.getpass(),
-    "login": "登入",
+    "login": "login",
     "action": "login",
     "new_loc": ""
 }
