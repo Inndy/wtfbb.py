@@ -18,7 +18,7 @@ Pragma: no-cache
 Cache-Control: no-cache""")
 
 login_data = {
-    "user_id": "b10315005",
+    "user_id": input("StudentID: "),
     "password": getpass.getpass(),
     "login": "登入",
     "action": "login",
