@@ -7,6 +7,7 @@ so I made this program to avoid to use BlackBoard.
 
 ## Dependency
 
+- [Python 3](https://www.python.org)
 - [requests](http://python-requests.org)
 
 ## License
